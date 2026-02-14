@@ -32,6 +32,10 @@ export const useGoogleAuth = (setOpenDialog, onGenerateTrip) => {
 	const { setUser } = useAuth();
 
 	const login = useGoogleLogin({
+		flow: "auth-code",
+		// Must match exactly what you add in Google Cloud Console → Credentials → OAuth client → Authorized redirect URIs
+		redirect_uri:
+			typeof window !== "undefined" ? window.location.origin : "",
 		onSuccess: (codeResp) =>
 			GetUserProfile(codeResp, setOpenDialog, onGenerateTrip, setUser),
 		onError: (error) => {

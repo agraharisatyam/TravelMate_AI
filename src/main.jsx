@@ -50,7 +50,7 @@ const router = createBrowserRouter(
 
 const googleClientId =
 	import.meta.env.VITE_GOOGLE_OAUTH_CLIENT_ID ||
-	"589136722646-s9m15id8pdilo7sl954toemaq9gmh0qh.apps.googleusercontent.com";
+	"465642788123-o9cffha4b1bjq9gpomo6i1pafgv04i9t.apps.googleusercontent.com";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>

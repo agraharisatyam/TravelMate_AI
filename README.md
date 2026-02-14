@@ -46,22 +46,25 @@ VITE_GOOGLE_OAUTH_CLIENT_ID=
 Replace the placeholder values with your actual credentials. You can obtain these credentials by signing up on the [Google Cloud Console](https://console.cloud.google.com/).
 [Google AI Studio](https://aistudio.google.com/)
 
-**Deploying on Vercel (Google sign-in must work)**
+**Deploying on Vercel (fix "Error 400: redirect_uri_mismatch")**
 
-For Google OAuth to work on your Vercel URL, you must allow that domain in Google Cloud:
+Google sign-in will fail until your Vercel URL is allowed in the OAuth client. Do this in Google Cloud, then redeploy.
 
 1. Open [Google Cloud Console](https://console.cloud.google.com/) → **APIs & Services** → **Credentials**.
-2. Open your **OAuth 2.0 Client ID** (Web application).
-3. Under **Authorized JavaScript origins**, add:
-   - `https://your-app.vercel.app` (replace with your real Vercel URL)
-   - For preview deployments you can add: `https://*.vercel.app`
-4. Under **Authorized redirect URIs**, add:
-   - `https://your-app.vercel.app`
-   - `https://your-app.vercel.app/`
-5. Save. In **Vercel** → your project → **Settings** → **Environment Variables**, add:
-   - `VITE_GOOGLE_OAUTH_CLIENT_ID` = your Google OAuth Web client ID (same as in `.env` locally).
+2. Click your **OAuth 2.0 Client ID** (type: Web application).
+3. **Authorized JavaScript origins** – click **+ ADD URI** and add **both** (no trailing slash on the first):
+   - `https://travel-mate-ai-72t6.vercel.app`
+   - If you use a custom domain or other Vercel URL, add that too (e.g. `https://your-custom.vercel.app`).
+4. **Authorized redirect URIs** – click **+ ADD URI** and add **both**:
+   - `https://travel-mate-ai-72t6.vercel.app`
+   - `https://travel-mate-ai-72t6.vercel.app/`
+   (Add your custom Vercel URL here too if you use one.)
+5. Click **SAVE**.
+6. In **Vercel** → your project → **Settings** → **Environment Variables**, set:
+   - `VITE_GOOGLE_OAUTH_CLIENT_ID` = your Google OAuth Web client ID.
+7. **Redeploy** the app on Vercel after saving the env var and Google Console settings.
 
-Redeploy after changing env vars. Without these steps, Google blocks the sign-in request on the deployed domain.
+The app sends `window.location.origin` as the redirect URI (e.g. `https://travel-mate-ai-72t6.vercel.app`). It must appear in **Authorized redirect URIs** exactly (including `https://` and no typos).
 
 **Running the Project**
 
