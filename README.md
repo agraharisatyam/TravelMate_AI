@@ -46,6 +46,23 @@ VITE_GOOGLE_OAUTH_CLIENT_ID=
 Replace the placeholder values with your actual credentials. You can obtain these credentials by signing up on the [Google Cloud Console](https://console.cloud.google.com/).
 [Google AI Studio](https://aistudio.google.com/)
 
+**Deploying on Vercel (Google sign-in must work)**
+
+For Google OAuth to work on your Vercel URL, you must allow that domain in Google Cloud:
+
+1. Open [Google Cloud Console](https://console.cloud.google.com/) → **APIs & Services** → **Credentials**.
+2. Open your **OAuth 2.0 Client ID** (Web application).
+3. Under **Authorized JavaScript origins**, add:
+   - `https://your-app.vercel.app` (replace with your real Vercel URL)
+   - For preview deployments you can add: `https://*.vercel.app`
+4. Under **Authorized redirect URIs**, add:
+   - `https://your-app.vercel.app`
+   - `https://your-app.vercel.app/`
+5. Save. In **Vercel** → your project → **Settings** → **Environment Variables**, add:
+   - `VITE_GOOGLE_OAUTH_CLIENT_ID` = your Google OAuth Web client ID (same as in `.env` locally).
+
+Redeploy after changing env vars. Without these steps, Google blocks the sign-in request on the deployed domain.
+
 **Running the Project**
 
 ```bash
