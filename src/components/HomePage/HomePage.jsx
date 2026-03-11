@@ -40,7 +40,7 @@ export const HomePage = () => {
     if (!query) return;
     try {
       const response = await fetch(
-        `https://google-map-places.p.rapidapi.com/maps/api/place/autocomplete/json?input=${query}&radius=50000&strictbounds=true&offset=3&location=40,-110&origin=40,-110&components=country:us&language=en®ion=en`,
+        `https://google-map-places.p.rapidapi.com/maps/api/place/autocomplete/json?input=${query}&radius=50000&strictbounds=true&offset=3&location=40,-110&origin=40,-110&components=country:us&language=en&region=en`,
         {
           method: "GET",
           headers: {
@@ -172,7 +172,7 @@ export const HomePage = () => {
   };
 
   // Handle place selection
- const handlePlaceSelection = (place) => {
+const handlePlaceSelection = (place) => {
   setSelectedPlace(place.description);
 
   setFormData({
@@ -210,9 +210,17 @@ export const HomePage = () => {
                         placeholder="Type to search..."
                         value={selectedPlace}
                         onChange={(e) => {
-                          setSelectedPlace(e.target.value);
-                          fetchPlaceSuggestions(e.target.value);
-                        }}
+  const value = e.target.value;
+
+  setSelectedPlace(value);
+
+  setFormData({
+    ...formData,
+    location: value,
+  });
+
+  fetchPlaceSuggestionsDebounced(value);
+}}
                         className="border-2 dark:border-customGreen border-blue-700"
                       />
                       {placeSuggestions.length > 0 && (
