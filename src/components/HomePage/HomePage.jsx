@@ -172,12 +172,16 @@ export const HomePage = () => {
   };
 
   // Handle place selection
-  const handlePlaceSelection = (place) => {
-    setSelectedPlace(place.description);
-    handleInputChanges("location", place.description);
-    setPlaceSuggestions([]);
-  };
+ const handlePlaceSelection = (place) => {
+  setSelectedPlace(place.description);
 
+  setFormData({
+    ...formData,
+    location: place.description,
+  });
+
+  setPlaceSuggestions([]); // close dropdown
+};
   return (
     <>
       <div className="w-full overflow-hidden px-3 md:px-14 lg:px-14 xl:px-40 font-serif">
