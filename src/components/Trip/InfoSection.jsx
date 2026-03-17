@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel";
 
 export const InfoSection = ({ trip }) => {
-	const [photoUrls, setPhotoUrls] = useState(['../../../public/travel.jpg']);
+	const [photoUrls, setPhotoUrls] = useState(['/travel.jpg']);
 
 	useEffect(() => {
 		if (trip) {
