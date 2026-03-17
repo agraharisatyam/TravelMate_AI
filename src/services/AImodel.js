@@ -4,7 +4,7 @@ import {
 	HarmBlockThreshold,
 } from "@google/generative-ai";
 
-const apiKey = 'AIzaSyAx4JC3qZVU5IS-S7C0eI8Lv5ZcOCZvaGc';
+const apiKey = 'AIzaSyB6VcyLDGxmWpVcrK_7i6hx2DQEK3j7Ptg';
 const genAI = new GoogleGenerativeAI(apiKey);
 
 // gemini-2.5-flash-lite has higher free-tier RPM (15); use gemini-2.0-flash if this model is unavailable
