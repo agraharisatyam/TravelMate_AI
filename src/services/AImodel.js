@@ -9,7 +9,7 @@ const genAI = new GoogleGenerativeAI(apiKey);
 
 // gemini-2.5-flash-lite has higher free-tier RPM (15); use gemini-2.0-flash if this model is unavailable
 const model = genAI.getGenerativeModel({
-	model: "gemini-2.5-flash-lite",
+	model: "gemini-3-flash-preview",
 });
 
 const generationConfig = {
